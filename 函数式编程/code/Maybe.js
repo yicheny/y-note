@@ -13,3 +13,8 @@ Maybe.prototype.isNothing = function() {
 Maybe.prototype.map = function(f) {
     return this.isNothing() ? Maybe.of(null) : Maybe.of(f(this.__value));
 }
+
+// map :: Functor f => (a -> b) -> f a -> f b
+var map = _.curry(function (f,any_functor_at_all) {
+    return any_functor_at_all.map(f);
+})

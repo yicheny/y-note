@@ -25,4 +25,5 @@ const head = x => x[0];
 const reverse = reduce((acc, x) => [x].concat(acc), []);
 const last = compose(head, reverse);
 
+
 //

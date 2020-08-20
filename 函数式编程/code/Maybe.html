@@ -9,8 +9,26 @@
     
 </body>
 </html>
-<script src='./Maybe.js'></script>
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js'></script>
+<script type='text/javascript' src='./Maybe.js'></script>
 <script>
+//add :: Number -> Number -> Number
+const add = _.curry((x,y)=>(x+y));
+//prop :: String -> {} -> a
+const prop = _.curry((prop,o)=>o[prop]);
+//compose :: [(a -> b)] -> (c -> d);
+function compose(...funcs) {
+    if (funcs.length === 0) return arg => arg;
+    if (funcs.length === 1) return funcs[0];
+    return funcs.reduce((a, b) => (...args) => a(b(...args)))
+}
 
 
+//Maybe.prototype.map测试
+var res = Maybe.of({ name: "Boris" }).map(prop("age")).map(add(10));
+console.log(res);
+var res = Maybe.of({ name: "Dinah", age: 14 }).map(prop("age")).map(add(10));
+console.log(res);
+
+//map
 </script>
