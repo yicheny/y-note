@@ -1,29 +1,20 @@
-const { curry } = require('lodash');
+// id :: a -> a;
+var id = x => x;
 
-//用于debug的追踪函数
-const trace = curry(function (tag, x) {
-    console.log(tag, x);
-    return x;
-});
+//compose :: (a -> b)…… -> (c -> d);
+function compose(...funcs) {
+    if (funcs.length === 0) return arg => arg;
+    if (funcs.length === 1) return funcs[0];
+    return funcs.reduce((a, b) => (...args) => a(b(...args)))
+}
 
-//组合
-const compose = function (f, g) {
-    return function (x) {
-        return f(g(x));
-    };
-};
+// map :: Functor f => (a -> b) -> f a -> f b
+var map = _.curry(function (f,any_functor_at_all) {
+    return any_functor_at_all.map(f);
+})
 
-//
-const match = curry((what, str) => str.match(whate));
-const replace = curry((what, replacement, str) => str.replace(what, replacement));
-const filter = curry((f, ary) => ary.filter(f));
-const map = curry((f, ary) => ary.map(f));
+//concat :: String -> String -> String
+var concat = _.curry((a,b)=>a.concat(b));
 
-const toUpperCase = x => x.toUpperCase();
-const toLowerCase = x => x.toLowerCase();
-const head = x => x[0];
-const reverse = reduce((acc, x) => [x].concat(acc), []);
-const last = compose(head, reverse);
-
-
-//
+//add :: Number -> Number -> Number
+var add = _.curry((x,y)=>(x+y));

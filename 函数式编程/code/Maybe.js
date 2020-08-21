@@ -18,3 +18,8 @@ Maybe.prototype.map = function(f) {
 var map = _.curry(function (f,any_functor_at_all) {
     return any_functor_at_all.map(f);
 })
+
+//  maybe :: b -> (a -> b) -> Maybe a -> b
+var maybe = _.curry(function(x, f, m) {
+    return m.isNothing() ? x : f(m.__value);
+});
