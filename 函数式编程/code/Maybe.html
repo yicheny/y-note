@@ -13,11 +13,6 @@
 <script type='text/javascript' src='./utils.js'></script>
 <script type='text/javascript' src='./Maybe.js'></script>
 <script>
-//add :: Number -> Number -> Number
-const add = _.curry((x,y)=>(x+y));
-//prop :: String -> {} -> a
-const prop = _.curry((prop,o)=>o[prop]);
-
 //Maybe.prototype.map测试
 var res = Maybe.of({ name: "Boris" }).map(prop("age")).map(add(10));
 console.log(res);

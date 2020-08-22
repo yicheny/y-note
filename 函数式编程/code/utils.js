@@ -18,3 +18,21 @@ var concat = _.curry((a,b)=>a.concat(b));
 
 //add :: Number -> Number -> Number
 var add = _.curry((x,y)=>(x+y));
+
+//prop :: String -> {} -> a
+var prop = _.curry((prop,o)=>o[prop]);
+
+// split :: String -> String -> [String]
+var split = _.curry((sym,str)=>(str.split(sym)));
+
+// head :: [a] => a
+var head = (ary)=>ary[0];
+
+// last :: [a] => a
+var last = (ary)=>ary[ary.length-1];
+
+// filter :: [a] => [a]
+var filter = _.curry((fn,ary)=>ary.filter(fn));
+
+// eq :: a -> a -> Bool
+var eq = _.curry((x,y)=>Object.is(x,y));
