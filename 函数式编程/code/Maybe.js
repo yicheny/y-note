@@ -14,6 +14,10 @@ Maybe.prototype.map = function(f) {
     return this.isNothing() ? Maybe.of(null) : Maybe.of(f(this.__value));
 }
 
+Maybe.prototype.join = function() {
+    return this.isNothing() ? Maybe.of(null) : this.__value;
+}
+
 //  maybe :: b -> (a -> b) -> Maybe a -> b
 var maybe = _.curry(function(x, f, m) {
     return m.isNothing() ? x : f(m.__value);

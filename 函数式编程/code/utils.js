@@ -8,11 +8,21 @@ function compose(...funcs) {
     return funcs.reduce((a, b) => (...args) => a(b(...args)))
 }
 
+//操作functor的工具
 // map :: Functor f => (a -> b) -> f a -> f b
 var map = _.curry(function (f,any_functor_at_all) {
     return any_functor_at_all.map(f);
 })
 
+//  join :: Monad m => m (m a) -> m a
+var join = function(mma){ return mma.join(); }
+
+//  chain :: Monad m => (a -> m b) -> m a -> m b
+var chain = _.curry(function(f, m){
+    return m.map(f).join(); // 或者 compose(join, map(f))(m)
+});
+
+//一般工具
 //concat :: String -> String -> String
 var concat = _.curry((a,b)=>a.concat(b));
 
