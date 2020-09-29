@@ -41,33 +41,21 @@ function Demo(){
 
 ## 初次渲染
 1. 执行`const [firstName,setFirstName] = useState('王');` 
-
-此时`cursor`为0，我们将初始参数值`'王'`放入到`status[0]`的位置【我们将这个地址命名为firstName】
-
-同时在`setters[0]`的位置放一个用于修改`firstName`的方法，我们称之为`setFirstName`，这个方法除了修改`firstName`，还另有一个机制，会触发视图渲染。不过，这里可能并不是立即触发视图渲染，因为一次渲染中可能同时存在多个状态改变，因为我认为可能是做了一个标记，等待所有状态改变完成再执行`render`
-
-cursor的值自增加，变为`1`
-
+    1. 此时`cursor`为0，我们将初始参数值`'王'`放入到`status[0]`的位置【我们将这个地址命名为firstName】
+    2. 同时在`setters[0]`的位置放一个用于修改`firstName`的方法，我们称之为`setFirstName`，这个方法除了修改`firstName`，还另有一个机制，会触发视图渲染。不过，这里可能并不是立即触发视图渲染，因为一次渲染中可能同时存在多个状态改变，因为我认为可能是做了一个标记，等待所有状态改变完成再执行`render`
+    3. cursor的值自增加，变为`1`
 2. 执行`const [lastName,setLastName] = useState('小明');` 
-
-同上，在`setters[1]`、`status[1]`放入对应的值
-
-cursor的值自增加，变为`2`
+    1. 同上，在`setters[1]`、`status[1]`放入对应的值
+    2. cursor的值自增加，变为`2`
 
 ## 后续渲染
 0. cursor重置为0
-
 1. 执行`const [firstName,setFirstName] = useState('王');` 
-
-从`setters[0]`、`status[0]`取出存放的值
-
-cursor的值自增加，变为`1`
-
+    1. 从`setters[0]`、`status[0]`取出存放的值
+    2. cursor的值自增加，变为`1`
 2. 执行`const [lastName,setLastName] = useState('小明');` 
-
-从`setters[1]`、`status[1]`取出存放的值
-
-cursor的值自增加，变为`2`
+    1. 从`setters[1]`、`status[1]`取出存放的值
+    2. cursor的值自增加，变为`2`
 
 ## 事件渲染
 每一个`setter`方法都和对应位置`cursor`上的`state`绑定。
