@@ -13,8 +13,13 @@ public class ClientRun {
             InetAddress local = InetAddress.getByAddress(addr);
             Socket socket = new Socket(local,8090);
             InputStream inputStream = socket.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String response = bufferedReader.readLine();
+
+//            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+//            String response = bufferedReader.readLine();
+
+            byte[] data = new byte[1024];
+            String response = new String(data,0,inputStream.read(data));
+
             System.out.println("======下面是服务端发送的消息======");
             System.out.println(response);
             System.out.println("==============================");
@@ -24,7 +29,7 @@ public class ClientRun {
             printWriter.write("服务器你好，这里是客户端!");
             printWriter.flush();
             printWriter.close();
-            bufferedReader.close();
+//            bufferedReader.close();
             socket.close();
             System.out.println("向服务端发送数据结束！");
         }catch (UnknownHostException e){
